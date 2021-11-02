@@ -4,7 +4,8 @@ require('dotenv').config();
 
 const createUser = async (req, res) => {
   const { body } = req;
-
+  
+  console.log(body, 'body')
 const user = await usersService
 .createUser(body);
 if (user.err) return res.status(422).json(user);

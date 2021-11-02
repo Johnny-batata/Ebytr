@@ -1,17 +1,10 @@
 const Joi = require('@hapi/joi');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const renderError = require('../helper/renderError').renderError
 
 const TOKEN_ERROR_MSG = 'token expirado, necessário fazer o login novamente ';
 
-const renderError = (error) => {
-  const err = {
-    err: { 
-      code: 'invalid_data',
-      message: error.message },
-  };
-  return err;
-};
 
 const validateIfRegisterFieldsExists = (req, res, next) => {
 
@@ -25,7 +18,7 @@ const { error } = Joi.object({
 })
   .validate(req.body);
 if (error) {
-return res.status(422).json(renderError(error)); 
+return res.status(422).json(renderError(error.message)); 
 }
 
 next();
@@ -38,7 +31,7 @@ const { error } = Joi.object({
 })
 .validate(req.body);
 if (error) {
-return res.status(422).json(renderError(error)); 
+return res.status(422).json(renderError(error.message)); 
 }
 
 next();

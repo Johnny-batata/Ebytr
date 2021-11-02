@@ -8,8 +8,8 @@ const createUser = async (body) => {
   .collection('users').insertOne({ name,  birthdate, email, password, role: 'employee' });
 };
 
-const findUserByName = async (name) => mongoConnection()
-.then((db) => db.collection('users').findOne({ name }))
+const findUserByEmail = async (email) => mongoConnection()
+.then((db) => db.collection('users').findOne({ email }))
 .then((result) => result);
 
-module.exports = { createUser, findUserByName };
+module.exports = { createUser, findUserByEmail };

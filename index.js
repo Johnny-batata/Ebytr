@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 
 const user = require('./controllers/usersController')
 
-app.get('/login', userMiddlewares.validateLogin, user.loginUser)
-app.get('/signup', userMiddlewares.validateIfRegisterFieldsExists,  user.createUser)
+app.post('/login', userMiddlewares.validateLogin, user.loginUser)
+app.post('/signup', userMiddlewares.validateIfRegisterFieldsExists,  user.createUser)
 
 
 app.listen(PORT, () => console.log(`conectado na porta ${PORT}`));
