@@ -1,6 +1,9 @@
+const jwt = require('jsonwebtoken');
+
 const validateToken = async (req, res, next) => {
   const token = req.headers.authorization;
   const segredo = process.env.SECRETPASSWORD;
+  const TOKEN_ERROR_MSG = 'token expirado, necessário fazer o login novamente ';
 
   if (!token) {
       return res.status(401).json({ message: 'Token invalido, necessário fazer o login novamente' });
@@ -13,7 +16,6 @@ const validateToken = async (req, res, next) => {
           userId: decoded.payload.userId,
       };
         req.user = userWithoutPassword;
-        // console.log(req.user, 'decoded', decoded);
 
         next();
 } catch (err) {

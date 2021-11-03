@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const renderError = require('../helper/renderError').renderError
 
-const TOKEN_ERROR_MSG = 'token expirado, necessário fazer o login novamente ';
 
 
 const validateIfRegisterFieldsExists = (req, res, next) => {

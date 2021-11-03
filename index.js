@@ -13,9 +13,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const user = require('./controllers/usersController')
+const tasks = require('./controllers/tasksController')
 
 app.post('/login', userMiddlewares.validateLogin, user.loginUser)
 app.post('/signup', userMiddlewares.validateIfRegisterFieldsExists,  user.createUser)
+app.get('/tasks', tokenMiddleware.validateToken,  tasks.getAllTasks)
+app.post('/tasks', tokenMiddleware.validateToken,  tasks.createTask)
 
 
 app.listen(PORT, () => console.log(`conectado na porta ${PORT}`));
