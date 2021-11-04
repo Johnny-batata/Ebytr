@@ -5,7 +5,7 @@ require('dotenv').config();
 const createUser = async (req, res) => {
   const { body } = req;
   
-  console.log(body, 'body')
+  console.log(body, 'body');
 const user = await usersService
 .createUser(body);
 if (user.err) return res.status(422).json(user);
@@ -32,6 +32,9 @@ const loginUser = async (req, res) => {
     res.status(200).json({ token });
 };
 
+const getAllUser = async (req, res) => {
+  const user = await usersService.getAllUser();
+  return res.status(200).json({ data: user });
+};
 
-
-module.exports = { createUser, loginUser };
+module.exports = { createUser, loginUser, getAllUser };

@@ -5,15 +5,16 @@ const createUser = async (body) => {
 
   const db = await mongoConnection();
   return db
-  .collection('users').insertOne({ name,  birthdate, email, password, role: 'employee' });
+  .collection('users').insertOne({ name, birthdate, email, password, role: 'employee' });
 };
 
 const findUserByEmail = async (email) => mongoConnection()
 .then((db) => db.collection('users').findOne({ email }))
 .then((result) => result);
 
-const getAllUser = async() => {
+const getAllUser = async () => {
+  const db = await mongoConnection();
+  return db.collection('users').find({}).toArray();
+};
 
-}
-
-module.exports = { createUser, findUserByEmail };
+module.exports = { createUser, findUserByEmail, getAllUser };
