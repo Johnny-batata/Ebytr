@@ -17,6 +17,8 @@ const tasks = require('./controllers/tasksController')
 
 app.post('/login', userMiddlewares.validateLogin, user.loginUser)
 app.post('/signup', userMiddlewares.validateIfRegisterFieldsExists,  user.createUser)
+
+app.put('/tasks', tokenMiddleware.validateToken,  tasks.updateTask)
 app.get('/tasks', tokenMiddleware.validateToken,  tasks.getAllTasks)
 app.post('/tasks', tokenMiddleware.validateToken,  tasks.createTask)
 

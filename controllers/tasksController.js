@@ -9,7 +9,11 @@ const getAllTasks = async(req, res) => {
   const tasks = await tasksService.getAllTasks()
   return res.status(200).json({ data: tasks})
 }
+const updateTask = async(req, res) => {
+   await tasksService.updateTask(req.body)
+  return res.status(200).json({ message: "task atualizada com sucesso" })
+}
 
 module.exports = {
-  createTask, getAllTasks
+  createTask, getAllTasks, updateTask
 }

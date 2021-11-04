@@ -2,19 +2,17 @@ const mongoConnection = require('./connection/mongoConnection');
 
 
 const createTask = async (body) => {
-  const { task, employee, date } = body; 
+  const { task, employee, date, status } = body; 
   const tasks = await getLastTask()
   if(!tasks) {
-    console.log('entrei')
     const db = await mongoConnection();
     return db
-    .collection('tasks').insertOne({ task, employee, date, id: 1 });
+    .collection('tasks').insertOne({ task, employee, date, status, id: 1 });
   }
-  console.log(tasks, 'tasks', tasks.map(({id}) => id))
 
   const db = await mongoConnection();
   return db
-  .collection('tasks').insertOne({ task, employee, date, id: Number(tasks.map(({id}) => id)) + 1 });
+  .collection('tasks').insertOne({ task, employee, date, status, id: Number(tasks.map(({id}) => id)) + 1 });
 };
 
 const getAllTasks = async() => {
@@ -29,6 +27,16 @@ const getLastTask = async() => {
   .collection('tasks').find({}, { _id: 0, id: 1}).sort({ id: -1}).limit(1).toArray();
 }
 
+const updateTask = async(body) => {
+  const { task, employee, date, status, id } = body; 
+
+  const db = await mongoConnection();
+  return db
+  .collection('tasks').updateOne({ id }, {
+    $set: { task, employee, date, status }
+  });
+}
+
 module.exports = {
-  createTask, getAllTasks
+  createTask, getAllTasks, updateTask
 }
