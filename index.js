@@ -21,6 +21,7 @@ app.post('/signup', userMiddlewares.validateIfRegisterFieldsExists,  user.create
 app.put('/tasks', tokenMiddleware.validateToken,  tasks.updateTask)
 app.get('/tasks', tokenMiddleware.validateToken,  tasks.getAllTasks)
 app.post('/tasks', tokenMiddleware.validateToken,  tasks.createTask)
+app.delete('/tasks/:id', tokenMiddleware.validateToken,  tasks.removeTask)
 
 
 app.listen(PORT, () => console.log(`conectado na porta ${PORT}`));

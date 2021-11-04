@@ -16,4 +16,9 @@ const updateTask = async(body) => {
   return task
 }
 
-module.exports = { createTask, getAllTasks, updateTask }
+const removeTask = async(id) => {
+  const task = await tasksModel.removeTask(id)
+  return task
+
+}
+module.exports = { createTask, getAllTasks, updateTask, removeTask }
