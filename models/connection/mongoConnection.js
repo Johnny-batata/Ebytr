@@ -1,11 +1,13 @@
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
 const OPTIONS = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
-const MONGO_DB_URL = 'mongodb://localhost:27017/?readPreference=primary&ssl=false';
+const MONGO_DB_URL = process.env.MONGODB;
+console.log(MONGO_DB_URL);
 
 let db = null;
 

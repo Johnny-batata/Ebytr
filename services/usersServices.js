@@ -6,7 +6,6 @@ const USER_WRONG = 'email ou senha inválidos, por favor, verifique e tente nova
 
 const createUser = async (body) => {
   const { email } = body; 
-  console.log(email, 'email');
   const userMail = await usersModel.findUserByEmail(email);
 
   if (userMail) {

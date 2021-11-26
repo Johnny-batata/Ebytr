@@ -39,8 +39,6 @@ const updateTask = async (body) => {
 };
 
 const removeTask = async (id) => {
-  console.log(id, 'id');
-
   const db = await mongoConnection();
   return db
   .collection('tasks').deleteOne({ id: Number(id) });
