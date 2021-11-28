@@ -7,7 +7,6 @@ const OPTIONS = {
 };
 
 const MONGO_DB_URL = process.env.MONGODB;
-console.log(MONGO_DB_URL);
 
 let db = null;
 
