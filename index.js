@@ -19,7 +19,9 @@ app.post('/signup', userMiddlewares.validateIfRegisterFieldsExists, user.createU
 app.get('/user', tokenMiddleware.validateToken, user.getAllUser);
 
 app.put('/tasks', tokenMiddleware.validateToken, tasks.updateTask);
-app.get('/tasks', tokenMiddleware.validateToken, tasks.getAllTasks);
+app.get('/tasks', 
+// tokenMiddleware.validateToken, 
+tasks.getAllTasks);
 app.post('/tasks', tokenMiddleware.validateToken, tasks.createTask);
 app.delete('/tasks/:id', tokenMiddleware.validateToken, tasks.removeTask);
 
